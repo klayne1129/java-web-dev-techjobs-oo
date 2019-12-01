@@ -13,6 +13,8 @@ public class JobTest {
     Job jobFullConstructor;
     Job jobDifferentIdOne;
     Job jobDifferentIdTwo;
+    Job emptyJob;
+    String jobString;
 
     @Before
     public void createJobObjects() {
@@ -21,6 +23,7 @@ public class JobTest {
         jobFullConstructor =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobDifferentIdOne =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobDifferentIdTwo =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        emptyJob = new Job("p", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
     }
     //Test the empty constructor
     @Test
@@ -38,15 +41,50 @@ public class JobTest {
     assertTrue(jobFullConstructor.getCoreCompetency() instanceof CoreCompetency);
 
         // checks values
-    assertTrue(jobFullConstructor.getEmployer().getValue().equals("ACME"));
-    assertTrue(jobFullConstructor.getLocation().getValue().equals("Desert"));
-    assertTrue(jobFullConstructor.getPositionType().getValue().equals("Quality control"));
-    assertTrue(jobFullConstructor.getCoreCompetency().getValue().equals("Persistence"));
+        assertEquals("ACME", jobFullConstructor.getEmployer().getValue());
+        assertEquals("Desert", jobFullConstructor.getLocation().getValue());
+        assertEquals("Quality control", jobFullConstructor.getPositionType().getValue());
+        assertEquals("Persistence", jobFullConstructor.getCoreCompetency().getValue());
 
     }
     // ensures objects are not considered equal if ID's are different
     @Test
     public void testJobsForEquality(){
-    assertFalse(jobDifferentIdOne.equals(jobDifferentIdTwo));
+        assertNotEquals(jobDifferentIdOne, jobDifferentIdTwo);
+    }
+
+
+    // ensure the first and last characters in the string are new lines.
+    @Test
+    public void customToStringMethodOne() {
+        String expected = "\n";
+        jobString = jobFullConstructor.toString();
+        int firstIndexString = 0;
+        int lastIndexString = jobString.length() - 1;
+
+        assertTrue(jobString.indexOf(expected) == firstIndexString);
+        assertTrue(jobString.lastIndexOf(expected) == lastIndexString);
+    }
+      // Each field contains a label and followed by the stored. Each on a new line.
+      @Test
+      public void customToStringMethodTwo() {
+        String jobString = jobFullConstructor.toString();
+        String output = "\n"+
+                "ID: " + jobFullConstructor.getId()+"\n"+
+                "Name: "+ jobFullConstructor.getName()+ "\n"+
+                "Employer: "+jobFullConstructor.getEmployer()+"\n"+
+                "Location: "+jobFullConstructor.getLocation()+"\n"+
+                "Position Type: "+jobFullConstructor.getPositionType()+"\n"+
+                "Core Competency: "+jobFullConstructor.getCoreCompetency()+"\n";
+
+          assertEquals(jobString, output);
+      }
+      
+      //If a field is empty, the method should add, “Data not available” after the label.
+    @Test
+    public void customToStringMethodEmployer() {
+         String jobOneEmployer = emptyJob.getEmployer().getValue();
+        String output = "not available";
+        assertTrue(jobOneEmployer.equals(output));
     }
 }

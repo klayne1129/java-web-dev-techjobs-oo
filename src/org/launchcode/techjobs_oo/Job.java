@@ -31,6 +31,33 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    // my custom toSting method:
+
+    @Override
+    public String toString() {
+
+           if (employer.getValue() != "") {
+
+               return "\n" +
+                       "ID: " + id + "\n" +
+                       "Name: " + name + "\n" +
+                       "Employer: " + employer + "\n" +
+                       "Location: " + location + "\n" +
+                       "Position Type: " + positionType + "\n" +
+                       "Core Competency: " + coreCompetency + "\n";
+           } else {
+              employer.setValue("not available");
+               return "\n" +
+                       "ID: " + id + "\n" +
+                       "Name: " + name + "\n" +
+                       "Employer: " + employer + "\n" +
+                       "Location: " + location + "\n" +
+                       "Position Type: " + positionType + "\n" +
+                       "Core Competency: " + coreCompetency + "\n";
+           }
+    }
+
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
