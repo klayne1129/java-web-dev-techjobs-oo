@@ -85,8 +85,6 @@ public class JobTest {
     public void customToStringMethodEmployer() {
          String jobOneEmployer = emptyJob.getEmployer().getValue();
         String output = "not available";
-        System.out.println(jobOneEmployer);
-        assertTrue(jobOneEmployer.equals(output));
-
+        assertEquals(jobOneEmployer,output);
     }
 }
