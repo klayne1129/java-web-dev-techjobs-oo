@@ -35,9 +35,6 @@ public class Job {
 
     @Override
     public String toString() {
-
-           if (!employer.getValue().equals("")) {
-
                return "\n" +
                        "ID: " + id + "\n" +
                        "Name: " + name + "\n" +
@@ -45,16 +42,7 @@ public class Job {
                        "Location: " + location + "\n" +
                        "Position Type: " + positionType + "\n" +
                        "Core Competency: " + coreCompetency + "\n";
-           } else {
-              employer.setValue("not available");
-               return "\n" +
-                       "ID: " + id + "\n" +
-                       "Name: " + name + "\n" +
-                       "Employer: " + employer + "\n" +
-                       "Location: " + location + "\n" +
-                       "Position Type: " + positionType + "\n" +
-                       "Core Competency: " + coreCompetency + "\n";
-           }
+
     }
 
 

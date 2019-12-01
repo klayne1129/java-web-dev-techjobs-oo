@@ -83,8 +83,9 @@ public class JobTest {
       //If a field is empty, the method should add, “Data not available” after the label.
     @Test
     public void customToStringMethodEmployer() {
-         String jobOneEmployer = emptyJob.getEmployer().getValue();
+        Job job3 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
+         String job3Employer = job3.getEmployer().getValue();
         String output = "not available";
-        assertEquals(jobOneEmployer,output);
+        assertEquals(job3Employer,output);
     }
 }
