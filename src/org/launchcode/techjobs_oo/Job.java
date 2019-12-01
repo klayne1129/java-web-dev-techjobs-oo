@@ -36,7 +36,7 @@ public class Job {
     @Override
     public String toString() {
 
-           if (employer.getValue() != "") {
+           if (!employer.getValue().equals("")) {
 
                return "\n" +
                        "ID: " + id + "\n" +
