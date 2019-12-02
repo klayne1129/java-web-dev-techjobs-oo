@@ -83,10 +83,24 @@ public class JobTest {
       //If a field is an empty string, the JobField Constructor should add, “Data not available” after the label.
     @Test
     public void JobFieldConstructorUpdatesValue() {
-        Job job3 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
-         String job3Employer = job3.getEmployer().getValue();
+        Job job3 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+         //employer
+        String job3Employer = job3.getEmployer().getValue();
         String output = "not available";
         assertEquals(job3Employer,output);
+        //name
+        String job3Name =job3.getName();
+        assertEquals(job3Name,output);
+        //location
+        String job3Location =job3.getLocation().getValue();
+        assertEquals(job3Location,output);
+        //PositionType
+        String job3PositionType = job3.getPositionType().getValue();
+        assertEquals(job3PositionType,output);
+        //CoreCompetency
+        String job3CoreCompetency =job3.getCoreCompetency().getValue();
+        assertEquals(job3CoreCompetency,output);
+
     }
 
     // checks to see that a job with only an ID returns a descriptive string.

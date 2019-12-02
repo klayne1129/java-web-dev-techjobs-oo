@@ -25,20 +25,24 @@ public class Job {
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
-            this.name = name;
-            this.employer = employer;
-            this.location = location;
-            this.positionType = positionType;
-            this.coreCompetency = coreCompetency;
+        this.name = name;
+        if (this.name == null || "".equals(this.name)) {
+            this.name="not available";
+        }
+        this.employer = employer;
+        this.location = location;
+        this.positionType = positionType;
+        this.coreCompetency = coreCompetency;
     }
 
     // my custom toSting method:
 
     @Override
     public String toString() {
-        if (this.name ==null && this.employer ==null && this.location ==null && this.positionType ==null && this.coreCompetency ==null ){
+        if (this.name ==null && this.employer ==null && this.location ==null && this.positionType ==null && this.coreCompetency ==null ) {
 
-            return "\n" +"OOPS! This job, ID: " + id + " does not seem to exist."+"\n";
+            return "\n" + "OOPS! This job, ID: " + id + " does not seem to exist." + "\n";
+
         }else{
             return "\n" +
                     "ID: " + id + "\n" +
