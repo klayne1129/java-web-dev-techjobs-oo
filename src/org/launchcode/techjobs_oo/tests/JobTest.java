@@ -80,12 +80,20 @@ public class JobTest {
           assertEquals(jobString, output);
       }
       
-      //If a field is empty, the method should add, “Data not available” after the label.
+      //If a field is an empty string, the JobField Constructor should add, “Data not available” after the label.
     @Test
-    public void customToStringMethodEmployer() {
+    public void JobFieldConstructorUpdatesValue() {
         Job job3 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
          String job3Employer = job3.getEmployer().getValue();
         String output = "not available";
         assertEquals(job3Employer,output);
+    }
+
+    // checks to see that a job with only an ID returns a descriptive string.
+    @Test
+    public void EmptyJobReturnsString() {
+String job =jobOne.toString();
+        String output = "\n" +"OOPS! This job, ID: " + jobOne.getId() + " does not seem to exist."+"\n";
+        assertEquals(job,output);
     }
 }
