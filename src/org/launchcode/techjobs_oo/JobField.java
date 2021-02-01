@@ -13,12 +13,8 @@ public abstract class JobField {
     }
     public JobField(String value) {
         this();
-        if (value == null || "".equals(value)){
-            this.value ="not available";
+        this.value = value;
 
-        } else {
-            this.value = value;
-        }
     }
 
     @Override

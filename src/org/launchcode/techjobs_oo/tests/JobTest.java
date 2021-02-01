@@ -10,6 +10,7 @@ public class JobTest {
 
     Job jobOne;
     Job jobTwo;
+    Job job3;
     Job jobFullConstructor;
     Job jobDifferentIdOne;
     Job jobDifferentIdTwo;
@@ -24,21 +25,22 @@ public class JobTest {
         jobDifferentIdOne =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobDifferentIdTwo =new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         emptyJob = new Job("p", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        job3 = new Job(" ", new Employer(" "), new Location(" "), new PositionType(" "), new CoreCompetency(" "));
     }
     //Test the empty constructor
     @Test
     public void  testSettingJobId() {
-        assertFalse(jobOne.getId() == jobTwo.getId());
+        assertNotEquals(jobOne.getId(), jobTwo.getId());
     }
 
     // test the full constructor
     @Test
     public void  testJobConstructorSetsAllFields() {
         //checks the class type of each field in job
-    assertTrue(jobFullConstructor.getEmployer() instanceof Employer);
-    assertTrue(jobFullConstructor.getLocation() instanceof Location);
-    assertTrue(jobFullConstructor.getPositionType() instanceof PositionType);
-    assertTrue(jobFullConstructor.getCoreCompetency() instanceof CoreCompetency);
+        assertNotNull(jobFullConstructor.getEmployer());
+        assertNotNull(jobFullConstructor.getLocation());
+        assertNotNull(jobFullConstructor.getPositionType());
+        assertNotNull(jobFullConstructor.getCoreCompetency());
 
         // checks values
         assertEquals("ACME", jobFullConstructor.getEmployer().getValue());
@@ -62,8 +64,8 @@ public class JobTest {
         int firstIndexString = 0;
         int lastIndexString = jobString.length() - 1;
 
-        assertTrue(jobString.indexOf(expected) == firstIndexString);
-        assertTrue(jobString.lastIndexOf(expected) == lastIndexString);
+        assertEquals(jobString.indexOf(expected), firstIndexString);
+        assertEquals(jobString.lastIndexOf(expected), lastIndexString);
     }
       // Each field contains a label and followed by the stored. Each on a new line.
       @Test
@@ -80,28 +82,8 @@ public class JobTest {
           assertEquals(jobString, output);
       }
       
-      //If a field is an empty string, the JobField Constructor should add, “Data not available” after the label.
-    @Test
-    public void JobFieldConstructorUpdatesValue() {
-        Job job3 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-         //employer
-        String job3Employer = job3.getEmployer().getValue();
-        String output = "not available";
-        assertEquals(job3Employer,output);
-        //name
-        String job3Name =job3.getName();
-        assertEquals(job3Name,output);
-        //location
-        String job3Location =job3.getLocation().getValue();
-        assertEquals(job3Location,output);
-        //PositionType
-        String job3PositionType = job3.getPositionType().getValue();
-        assertEquals(job3PositionType,output);
-        //CoreCompetency
-        String job3CoreCompetency =job3.getCoreCompetency().getValue();
-        assertEquals(job3CoreCompetency,output);
 
-    }
+
 
     // checks to see that a job with only an ID returns a descriptive string.
     @Test
